@@ -27,11 +27,11 @@ public:
         Node<T>* newNode = new Node<T>();
         newNode->data = data;
         if(index == 0) {
+            newNode->prev = nullptr;
+            newNode->next = head;
             if (head != nullptr) {
                 head->prev = newNode;
             }
-            newNode->prev = nullptr;
-            newNode->next = head;
             head = newNode;
         } else {
             Node<T>* temp = head;
@@ -39,8 +39,12 @@ public:
                 temp = temp->next;
             }
             newNode->prev = temp;
-            newNode->next = temp->next;
-            temp->next->prev = newNode;
+            if (index == this->size()) {
+                newNode->next = nullptr;
+            } else {
+                newNode->next = temp->next;
+                temp->next->prev = newNode;
+            }
             temp->next = newNode;
         }
     }
