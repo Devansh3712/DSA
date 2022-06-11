@@ -5,18 +5,18 @@ import (
 )
 
 type Node[T comparable] struct {
-	Data	T
-	Next	*Node[T]
+	Data T
+	Next *Node[T]
 }
 
 type LinkedList[T comparable] struct {
-	Head	*Node[T]
+	Head *Node[T]
 }
 
 func (l *LinkedList[T]) size() int {
 	count := 0
 	temp := l.Head
-	for ;; {
+	for {
 		if temp.Next == nil {
 			break
 		}
@@ -33,7 +33,7 @@ func (l *LinkedList[T]) insert(data T, index int) {
 		l.Head = newNode
 	} else {
 		temp := l.Head
-		for i := 0; i < index - 1; i++ {
+		for i := 0; i < index-1; i++ {
 			temp = temp.Next
 		}
 		newNode.Next = temp.Next
@@ -43,13 +43,13 @@ func (l *LinkedList[T]) insert(data T, index int) {
 
 func (l *LinkedList[T]) remove(index int) {
 	if l.Head == nil || index < 0 || index > l.size() {
-		return;
+		return
 	}
 	if index == 0 {
 		l.Head = l.Head.Next
 	} else {
 		temp := l.Head
-		for i := 0; i < index - 1; i++ {
+		for i := 0; i < index-1; i++ {
 			temp = temp.Next
 		}
 		temp.Next = temp.Next.Next
@@ -59,7 +59,7 @@ func (l *LinkedList[T]) remove(index int) {
 func (l *LinkedList[T]) reverse() {
 	var prev, curr, next *Node[T]
 	curr = l.Head
-	for ;; {
+	for {
 		if curr == nil {
 			break
 		}
@@ -73,7 +73,7 @@ func (l *LinkedList[T]) reverse() {
 
 func (l *LinkedList[T]) print() {
 	temp := l.Head
-	for ;; {
+	for {
 		if temp.Next == nil {
 			break
 		}
@@ -87,4 +87,3 @@ func main() {
 	ll := LinkedList[int]{Head: nil}
 	ll.print()
 }
-
