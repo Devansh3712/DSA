@@ -1,0 +1,4 @@
+run:
+	g++ -o main main.cpp
+	./main.exe
+
